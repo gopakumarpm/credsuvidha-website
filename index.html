@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CredSuvidha - Trusted Partner. Swift Solutions.</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: {
+                900: '#002244', // Dark Navy Blue
+                800: '#003366',
+              },
+              amber: {
+                400: '#FFBF00', // Gold/Amber
+                500: '#F59E0B',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            animation: {
+                'fadeIn': 'fadeIn 0.3s ease-out forwards',
+            },
+            keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0', transform: 'scale(0.95)' },
+                    '100%': { opacity: '1', transform: 'scale(1)' },
+                }
+            }
+          },
+        },
+      }
+    </script>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            // Initialize EmailJS with your Public Key
+            emailjs.init({
+                publicKey: "gUcAW5AwPYDJ7wF_5",
+            });
+        })();
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom scrollbar for modals */
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #555; }
+        
+        /* Smooth scrolling for anchor links */
+        html { scroll-behavior: smooth; }
+        
+        .scroll-mt-20 { scroll-margin-top: 5rem; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@emailjs/browser": "https://aistudiocdn.com/@emailjs/browser@^4.4.1"
+  }
+}
+</script>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo Section -->
+                <div class="flex-shrink-0 flex items-center">
+                    <!-- Logo Image -->
+                    <img src="logo.png" alt="CredSuvidha" class="h-10 w-auto md:h-12 hidden" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex'" onload="this.classList.remove('hidden')">
+                    
+                    <!-- Fallback Logo if image missing -->
+                    <div id="logo-fallback" class="flex items-center gap-2" style="display:none;">
+                        <div class="bg-navy-900 text-amber-400 font-bold text-2xl p-2 rounded-lg leading-none">CS</div>
+                        <span class="font-bold text-navy-900 text-xl tracking-tight hidden sm:block">CredSuvidha</span>
+                    </div>
+                    <!-- Script to show fallback immediately if src is broken or not loaded yet handled by onerror above, 
+                         but we default fallback to flex if img is hidden initially via CSS logic -->
+                    <script>
+                        // Immediate check for fallback display logic
+                        const img = document.querySelector('img[alt="CredSuvidha"]');
+                        if (!img.complete || img.naturalHeight === 0) {
+                            document.getElementById('logo-fallback').style.display = 'flex';
+                        }
+                    </script>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-slate-600 hover:text-navy-900 font-medium transition-colors">Services</a>
+                    <a href="#calculator" class="text-slate-600 hover:text-navy-900 font-medium transition-colors">Calculator</a>
+                    <a href="#contact" class="text-slate-600 hover:text-navy-900 font-medium transition-colors">Contact</a>
+                    <a href="#contact" class="bg-amber-400 hover:bg-amber-500 text-navy-900 font-bold py-3 px-6 rounded-lg shadow-sm transition-all transform hover:scale-105">
+                        Apply Now
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-navy-900 hover:text-amber-500 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg z-40">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#services" class="mobile-link block px-3 py-4 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-navy-900">Services</a>
+                <a href="#calculator" class="mobile-link block px-3 py-4 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-navy-900">Calculator</a>
+                <a href="#contact" class="mobile-link block px-3 py-4 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50 hover:text-navy-900">Contact</a>
+                <a href="#contact" class="mobile-link block w-full text-center mt-4 bg-amber-400 hover:bg-amber-500 text-navy-900 font-bold py-4 rounded-lg shadow-sm">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative bg-gray-50 pt-10 pb-16 lg:pt-20 lg:pb-24 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <div class="inline-flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full mb-8 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span class="text-sm font-medium text-slate-600 tracking-wide uppercase">Trusted Partner. Swift Solutions.</span>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-navy-900 tracking-tight leading-tight mb-6">
+                    Unlock Your Financial Potential <br class="hidden md:block" />
+                    with <span class="text-amber-500">CredSuvidha</span>
+                </h1>
+
+                <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 mb-10">
+                    Approvals for Home, Personal, Business, and Auto Loans. 
+                    Experience a paperless process tailored to your needs.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#contact" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-navy-900 hover:bg-navy-800 text-white font-bold text-lg py-4 px-8 rounded-lg shadow-lg transition-all transform hover:-translate-y-1">
+                        Get Started <i class="fa-solid fa-chevron-right text-amber-400"></i>
+                    </a>
+                    <a href="#calculator" class="w-full sm:w-auto text-navy-900 font-semibold text-lg py-4 px-8 hover:underline decoration-amber-400 decoration-2 underline-offset-4">
+                        Calculate EMI
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Decorative Background -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+                <div class="absolute -top-[10%] -left-[5%] w-72 h-72 bg-amber-400/10 rounded-full blur-3xl"></div>
+                <div class="absolute top-[20%] -right-[5%] w-96 h-96 bg-navy-900/5 rounded-full blur-3xl"></div>
+            </div>
+        </section>
+
+        <!-- EMI Calculator Section -->
+        <div id="calculator" class="scroll-mt-20 py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-navy-900 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-calculator text-amber-500"></i> EMI Calculator
+                    </h2>
+                    <p class="mt-2 text-slate-600">Plan your finances before you apply.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden md:flex">
+                    <!-- Inputs -->
+                    <div class="p-8 md:w-1/2 space-y-6">
+                        <!-- Amount -->
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Loan Amount (₹)</label>
+                            <input type="range" id="amount-slider" min="10000" max="10000000" step="5000" value="500000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-navy-900 mb-3">
+                            <input type="number" id="amount-input" value="500000" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent font-medium text-navy-900">
+                        </div>
+
+                        <!-- Interest -->
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Interest Rate (% p.a)</label>
+                            <input type="range" id="rate-slider" min="1" max="25" step="0.1" value="8.5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-navy-900 mb-3">
+                            <input type="number" id="rate-input" value="8.5" class="w-24 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 text-center font-medium text-navy-900">
+                        </div>
+
+                        <!-- Tenure -->
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Tenure (Years)</label>
+                            <input type="range" id="tenure-slider" min="1" max="30" step="1" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-navy-900 mb-3">
+                            <input type="number" id="tenure-input" value="5" class="w-24 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 text-center font-medium text-navy-900">
+                        </div>
+                    </div>
+
+                    <!-- Result -->
+                    <div class="bg-navy-900 p-8 md:w-1/2 flex flex-col justify-center items-center text-center">
+                        <h3 class="text-slate-300 text-lg font-medium mb-2">Estimated Monthly EMI</h3>
+                        <div id="emi-result" class="text-4xl md:text-5xl font-bold text-amber-400 mb-6">₹ 10,134</div>
+                        
+                        <div class="w-full space-y-3 text-slate-300 text-sm">
+                            <div class="flex justify-between border-b border-navy-800 pb-2">
+                                <span>Principal Amount</span>
+                                <span id="principal-display" class="font-semibold text-white">₹ 5,00,000</span>
+                            </div>
+                            <div class="flex justify-between border-b border-navy-800 pb-2">
+                                <span>Total Interest</span>
+                                <span id="interest-display" class="font-semibold text-white">₹ 1,08,032</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Total Amount Payable</span>
+                                <span id="total-display" class="font-semibold text-white">₹ 6,08,032</span>
+                            </div>
+                        </div>
+
+                        <p class="mt-8 text-xs text-slate-500 max-w-xs">
+                            Note: These figures are tentative and is subject to change post credit Check.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div id="services" class="scroll-mt-20 py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-navy-900">Our Services</h2>
+                    <p class="mt-2 text-slate-600">Comprehensive financial solutions for every stage of life.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Home Loan -->
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group border-t-4 border-transparent hover:border-amber-400">
+                        <div class="text-navy-900 group-hover:text-amber-500 transition-colors duration-300 mb-4 text-4xl">
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-900 mb-3">Home Loan</h3>
+                        <p class="text-slate-600 leading-relaxed">Get your dream home with our competitive interest rates and extended tenures.</p>
+                    </div>
+
+                    <!-- Personal Loan -->
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group border-t-4 border-transparent hover:border-amber-400">
+                        <div class="text-navy-900 group-hover:text-amber-500 transition-colors duration-300 mb-4 text-4xl">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-900 mb-3">Personal Loan</h3>
+                        <p class="text-slate-600 leading-relaxed">Immediate funds for your personal needs. No collateral required.</p>
+                    </div>
+
+                    <!-- Business Loan -->
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group border-t-4 border-transparent hover:border-amber-400">
+                        <div class="text-navy-900 group-hover:text-amber-500 transition-colors duration-300 mb-4 text-4xl">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-900 mb-3">Business Loan</h3>
+                        <p class="text-slate-600 leading-relaxed">Scale your operations with capital solutions tailored for Indian MSMEs.</p>
+                    </div>
+
+                    <!-- Auto Loan -->
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group border-t-4 border-transparent hover:border-amber-400">
+                        <div class="text-navy-900 group-hover:text-amber-500 transition-colors duration-300 mb-4 text-4xl">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy-900 mb-3">Auto Loan</h3>
+                        <p class="text-slate-600 leading-relaxed">Drive your dream car today. 90% financing on on-road prices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Markers -->
+        <section class="py-12 bg-navy-900 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-white/10 p-4 rounded-full mb-4 text-amber-400 text-3xl">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">100% Data Secure</h4>
+                        <p class="text-slate-300">Your financial data is encrypted and safe with us.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <div class="bg-white/10 p-4 rounded-full mb-4 text-amber-400 text-3xl">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">No Hidden Charges</h4>
+                        <p class="text-slate-300">Transparent processing fees and clear terms.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                         <div class="bg-white/10 p-4 rounded-full mb-4 text-amber-400 text-3xl">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Paperless Process</h4>
+                        <p class="text-slate-300">Digital application from the comfort of your home.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lead Generation Form -->
+        <section id="contact" class="scroll-mt-20 py-16 bg-white relative">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6">
+                <!-- Success Message Container (Hidden by default) -->
+                <div id="success-container" class="hidden py-10 bg-amber-50 rounded-2xl text-center shadow-lg border border-amber-100">
+                    <div class="inline-block p-4 bg-green-100 rounded-full mb-6">
+                        <i class="fa-solid fa-circle-check text-5xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-navy-900 mb-4">Request Received!</h3>
+                    <p class="text-lg text-slate-700 mb-8">
+                        Thank you for trusting us. Our executive will call you shortly.
+                    </p>
+                    <button onclick="resetForm()" class="text-navy-900 font-semibold underline hover:text-amber-600">
+                        Submit another request
+                    </button>
+                </div>
+
+                <!-- Form Container -->
+                <div id="form-container" class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
+                    <div class="bg-navy-900 py-6 px-8">
+                        <h2 class="text-2xl md:text-3xl font-bold text-white text-center">Get a Call Back</h2>
+                        <p class="text-amber-400 text-center mt-2 font-medium">Expert assistance is just a click away</p>
+                    </div>
+
+                    <div class="p-8 md:p-10">
+                        <form id="lead-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
+                                    <input type="text" id="name" name="name" required placeholder="John Doe" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:bg-white transition-all outline-none">
+                                </div>
+
+                                <div>
+                                    <label for="mobile" class="block text-sm font-semibold text-slate-700 mb-2">Mobile Number</label>
+                                    <div class="relative">
+                                        <span class="absolute left-4 top-4 text-slate-400 font-medium">+91</span>
+                                        <input type="tel" id="mobile" name="mobile" required placeholder="9876543210" class="w-full p-4 pl-12 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:bg-white transition-all outline-none">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email ID</label>
+                                <input type="email" id="email" name="email" required placeholder="john@example.com" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:bg-white transition-all outline-none">
+                            </div>
+
+                            <div>
+                                <label for="service" class="block text-sm font-semibold text-slate-700 mb-2">Service Needed</label>
+                                <div class="relative">
+                                    <select id="service" name="service" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:bg-white transition-all outline-none appearance-none">
+                                        <option value="Home Loan">Home Loan</option>
+                                        <option value="Personal Loan" selected>Personal Loan</option>
+                                        <option value="Business Loan">Business Loan</option>
+                                        <option value="Auto Loan">Auto Loan</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                                        <i class="fa-solid fa-chevron-down text-gray-500"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="form-error" class="hidden text-red-600 text-sm bg-red-50 p-3 rounded-lg border border-red-100"></div>
+
+                            <button type="submit" id="submit-btn" class="w-full bg-amber-400 hover:bg-amber-500 text-navy-900 font-bold py-4 rounded-lg shadow-md transition-all transform active:scale-95 flex justify-center items-center gap-2 text-lg">
+                                <span id="btn-text">Request Callback</span> 
+                                <i id="btn-icon" class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-700 pb-8">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+                         <div class="bg-white text-navy-900 font-bold text-xl p-1 rounded leading-none">CS</div>
+                        <span class="text-2xl font-bold tracking-tight">CredSuvidha</span>
+                    </div>
+                    <p class="text-amber-400 font-medium tracking-wide">Trusted Partner. Swift Solutions.</p>
+                </div>
+                
+                <div class="flex space-x-6 text-sm">
+                    <button onclick="openModal('privacy')" class="text-slate-300 hover:text-white hover:underline">Privacy Policy</button>
+                    <button onclick="openModal('terms')" class="text-slate-300 hover:text-white hover:underline">Terms of Use</button>
+                </div>
+            </div>
+            
+            <div class="text-center text-slate-500 text-sm">
+                &copy; <span id="year"></span> CredSuvidha. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Backdrop -->
+    <div id="modal-backdrop" onclick="closeModal()" class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm transition-opacity flex items-center justify-center p-4">
+        <!-- Modal Content Container -->
+        <div id="modal-content" onclick="event.stopPropagation()" class="relative bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col animate-fadeIn">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100 bg-gray-50">
+                <h3 id="modal-title" class="text-xl font-bold text-navy-900">Title</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-gray-100">
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="modal-body" class="p-6 overflow-y-auto custom-scrollbar">
+                <!-- Content injected via JS -->
+            </div>
+            
+            <div class="p-4 border-t border-gray-100 bg-gray-50 flex justify-end">
+                <button onclick="closeModal()" class="bg-navy-900 text-white px-6 py-2 rounded-lg font-medium hover:bg-navy-800 transition-colors">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Set Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 1. Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            const icon = btn.querySelector('i');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                btn.querySelector('i').classList.remove('fa-times');
+                btn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // 2. EMI Calculator Logic
+        const amountSlider = document.getElementById('amount-slider');
+        const amountInput = document.getElementById('amount-input');
+        const rateSlider = document.getElementById('rate-slider');
+        const rateInput = document.getElementById('rate-input');
+        const tenureSlider = document.getElementById('tenure-slider');
+        const tenureInput = document.getElementById('tenure-input');
+
+        const emiResult = document.getElementById('emi-result');
+        const principalDisplay = document.getElementById('principal-display');
+        const interestDisplay = document.getElementById('interest-display');
+        const totalDisplay = document.getElementById('total-display');
+
+        function formatCurrency(val) {
+            return new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                maximumFractionDigits: 0
+            }).format(val);
+        }
+
+        function calculateEMI() {
+            const P = parseFloat(amountInput.value);
+            const r = parseFloat(rateInput.value) / 12 / 100;
+            const n = parseFloat(tenureInput.value) * 12;
+
+            let emi = 0;
+            if (P > 0 && r > 0 && n > 0) {
+                emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+            }
+
+            const totalPayable = emi * n;
+            const totalInterest = totalPayable - P;
+
+            emiResult.textContent = formatCurrency(Math.round(emi));
+            principalDisplay.textContent = formatCurrency(P);
+            interestDisplay.textContent = formatCurrency(Math.round(totalInterest));
+            totalDisplay.textContent = formatCurrency(Math.round(totalPayable));
+        }
+
+        function syncInputs(slider, input) {
+            slider.addEventListener('input', () => {
+                input.value = slider.value;
+                calculateEMI();
+            });
+            input.addEventListener('input', () => {
+                slider.value = input.value;
+                calculateEMI();
+            });
+        }
+
+        syncInputs(amountSlider, amountInput);
+        syncInputs(rateSlider, rateInput);
+        syncInputs(tenureSlider, tenureInput);
+        
+        // Initial Calculation
+        calculateEMI();
+
+
+        // 3. Lead Generation Form & EmailJS
+        const form = document.getElementById('lead-form');
+        const formContainer = document.getElementById('form-container');
+        const successContainer = document.getElementById('success-container');
+        const formError = document.getElementById('form-error');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnIcon = document.getElementById('btn-icon');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            formError.classList.add('hidden');
+            formError.textContent = '';
+
+            // Mobile Validation
+            const mobile = document.getElementById('mobile').value;
+            const mobileRegex = /^[6-9]\d{9}$/;
+
+            if (!mobileRegex.test(mobile)) {
+                formError.textContent = 'Please enter a valid 10-digit Indian mobile number starting with 6-9.';
+                formError.classList.remove('hidden');
+                return;
+            }
+
+            // Loading State
+            submitBtn.disabled = true;
+            btnText.textContent = 'Submitting...';
+            btnIcon.classList.remove('fa-paper-plane');
+            btnIcon.classList.add('fa-spinner', 'fa-spin');
+
+            const serviceID = 'service_cksb0lt';
+            const templateID = 'template_d1kvwsc';
+
+            const templateParams = {
+                name: document.getElementById('name').value,
+                mobile: mobile,
+                email: document.getElementById('email').value,
+                service: document.getElementById('service').value,
+                // Variations for robustness
+                from_name: document.getElementById('name').value,
+                from_email: document.getElementById('email').value,
+                message: `Service Requested: ${document.getElementById('service').value}`
+            };
+
+            emailjs.send(serviceID, templateID, templateParams)
+                .then(() => {
+                    formContainer.classList.add('hidden');
+                    successContainer.classList.remove('hidden');
+                    form.reset();
+                }, (err) => {
+                    console.error('FAILED...', err);
+                    formError.textContent = 'Something went wrong. Please try again later.';
+                    formError.classList.remove('hidden');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'Request Callback';
+                    btnIcon.classList.remove('fa-spinner', 'fa-spin');
+                    btnIcon.classList.add('fa-paper-plane');
+                });
+        });
+
+        // Mobile Input restriction (Numbers only)
+        document.getElementById('mobile').addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '').substring(0, 10);
+        });
+
+        function resetForm() {
+            successContainer.classList.add('hidden');
+            formContainer.classList.remove('hidden');
+        }
+
+        // 4. Modal Logic
+        const backdrop = document.getElementById('modal-backdrop');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+
+        const contentPrivacy = `
+            <div class="space-y-4 text-sm text-slate-600">
+                <p><strong>Effective Date: October 26, 2023</strong></p>
+                <p>At CredSuvidha, we are committed to protecting the privacy and security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data in compliance with Indian Information Technology Act, 2000.</p>
+                <h4 class="font-bold text-navy-900">1. Data Collection</h4>
+                <p>We collect personal information (Name, Mobile, Email) solely for the purpose of processing your loan application and checking eligibility.</p>
+                <h4 class="font-bold text-navy-900">2. Usage of Information</h4>
+                <p>Your data is used to contact you regarding your enquiry and is shared only with our verified banking partners for loan processing.</p>
+                <h4 class="font-bold text-navy-900">3. Data Security</h4>
+                <p>We implement industry-standard encryption to protect your data during transmission and storage.</p>
+            </div>
+        `;
+
+        const contentTerms = `
+            <div class="space-y-4 text-sm text-slate-600">
+                <h4 class="font-bold text-navy-900">1. Acceptance of Terms</h4>
+                <p>By accessing CredSuvidha, you agree to be bound by these Terms of Use.</p>
+                <h4 class="font-bold text-navy-900">2. Services</h4>
+                <p>CredSuvidha acts as an aggregator connecting borrowers with financial institutions. We do not directly provide loans.</p>
+                <h4 class="font-bold text-navy-900">3. Limitation of Liability</h4>
+                <p>Loan approval is at the sole discretion of the lending bank/NBFC. CredSuvidha is not liable for rejection of applications.</p>
+            </div>
+        `;
+
+        function openModal(type) {
+            backdrop.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            if (type === 'privacy') {
+                modalTitle.textContent = 'Privacy Policy';
+                modalBody.innerHTML = contentPrivacy;
+            } else if (type === 'terms') {
+                modalTitle.textContent = 'Terms of Use';
+                modalBody.innerHTML = contentTerms;
+            }
+        }
+
+        function closeModal() {
+            backdrop.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
