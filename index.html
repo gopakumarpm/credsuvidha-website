@@ -1248,9 +1248,14 @@
         emailjs.init({ publicKey: 'gUcAW5AwPYDJ7wF_5' });
 
         // ---- Supabase Init ----
-        const supabaseUrl = 'https://bzfvkdzjdeblizjnqnbv.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6ZnZrZHpqZGVibGl6am5xbmJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0MzQwNTIsImV4cCI6MjA4NzAxMDA1Mn0.CWY-7zI84txE1bCAyQmlNrtOQJTwHCPyLcihlogv_Sw';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        let supabaseClient = null;
+        try {
+            const supabaseUrl = 'https://bzfvkdzjdeblizjnqnbv.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6ZnZrZHpqZGVibGl6am5xbmJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0MzQwNTIsImV4cCI6MjA4NzAxMDA1Mn0.CWY-7zI84txE1bCAyQmlNrtOQJTwHCPyLcihlogv_Sw';
+            supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        } catch (e) {
+            console.warn('Supabase init failed, form will use email only:', e);
+        }
 
         // ---- Mobile Menu Toggle ----
         const mobileToggle = document.getElementById('mobile-toggle');
@@ -1466,7 +1471,9 @@
 
             // Send email and save to database in parallel
             const emailPromise = emailjs.send('service_cksb0lt', 'template_d1kvwsc', formData);
-            const dbPromise = supabase.from('leads').insert([formData]);
+            const dbPromise = supabaseClient
+                ? supabaseClient.from('leads').insert([formData])
+                : Promise.resolve({ error: 'Supabase not initialized' });
 
             Promise.allSettled([emailPromise, dbPromise])
                 .then((results) => {
