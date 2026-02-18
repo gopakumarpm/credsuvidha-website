@@ -1460,7 +1460,17 @@
             btn.textContent = 'Submitting...';
             btn.disabled = true;
 
+            // Generate unique lead ID: CS-YYYYMMDD-HHMMSS
+            const now = new Date();
+            const leadId = 'CS-' + now.getFullYear()
+                + String(now.getMonth() + 1).padStart(2, '0')
+                + String(now.getDate()).padStart(2, '0')
+                + '-' + String(now.getHours()).padStart(2, '0')
+                + String(now.getMinutes()).padStart(2, '0')
+                + String(now.getSeconds()).padStart(2, '0');
+
             const formData = {
+                lead_id: leadId,
                 name: document.getElementById('form-name').value,
                 mobile: mobile,
                 email: document.getElementById('form-email').value,
