@@ -16,6 +16,7 @@
     <meta property="og:image" content="https://www.credsuvidha.com/assets/images/og-image.png">
     <meta name="twitter:image" content="https://www.credsuvidha.com/assets/images/og-image.png">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1246,6 +1247,11 @@
         // ---- EmailJS Init ----
         emailjs.init({ publicKey: 'gUcAW5AwPYDJ7wF_5' });
 
+        // ---- Supabase Init ----
+        const supabaseUrl = 'https://bzfvkdzjdeblizjnqnbv.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6ZnZrZHpqZGVibGl6am5xbmJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0MzQwNTIsImV4cCI6MjA4NzAxMDA1Mn0.CWY-7zI84txE1bCAyQmlNrtOQJTwHCPyLcihlogv_Sw';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
         // ---- Mobile Menu Toggle ----
         const mobileToggle = document.getElementById('mobile-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1432,7 +1438,7 @@
             }
         });
 
-        // ---- Form submission with EmailJS ----
+        // ---- Form submission with EmailJS + Supabase ----
         document.getElementById('lead-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = this.querySelector('button[type="submit"]');
@@ -1449,7 +1455,7 @@
             btn.textContent = 'Submitting...';
             btn.disabled = true;
 
-            const templateParams = {
+            const formData = {
                 name: document.getElementById('form-name').value,
                 mobile: mobile,
                 email: document.getElementById('form-email').value,
@@ -1458,30 +1464,41 @@
                 message: document.getElementById('form-message').value || 'No message provided'
             };
 
-            emailjs.send('service_cksb0lt', 'template_d1kvwsc', templateParams)
-                .then(() => {
-                    btn.textContent = 'Submitted Successfully!';
-                    btn.classList.remove('from-brand-600', 'to-brand-500');
-                    btn.classList.add('from-emerald-600', 'to-emerald-500');
-                    setTimeout(() => {
-                        this.reset();
-                        btn.textContent = 'Submit Application';
-                        btn.disabled = false;
-                        btn.classList.add('from-brand-600', 'to-brand-500');
-                        btn.classList.remove('from-emerald-600', 'to-emerald-500');
-                    }, 3000);
-                })
-                .catch((error) => {
-                    console.error('EmailJS error:', error);
-                    btn.textContent = 'Failed - Try Again';
-                    btn.classList.remove('from-brand-600', 'to-brand-500');
-                    btn.classList.add('from-red-600', 'to-red-500');
-                    setTimeout(() => {
-                        btn.textContent = 'Submit Application';
-                        btn.disabled = false;
-                        btn.classList.add('from-brand-600', 'to-brand-500');
-                        btn.classList.remove('from-red-600', 'to-red-500');
-                    }, 3000);
+            // Send email and save to database in parallel
+            const emailPromise = emailjs.send('service_cksb0lt', 'template_d1kvwsc', formData);
+            const dbPromise = supabase.from('leads').insert([formData]);
+
+            Promise.allSettled([emailPromise, dbPromise])
+                .then((results) => {
+                    const emailOk = results[0].status === 'fulfilled';
+                    const dbOk = results[1].status === 'fulfilled' && !results[1].value.error;
+
+                    if (!dbOk) console.error('Supabase error:', results[1].value?.error || results[1].reason);
+                    if (!emailOk) console.error('EmailJS error:', results[0].reason);
+
+                    // Show success if at least one succeeded
+                    if (emailOk || dbOk) {
+                        btn.textContent = 'Submitted Successfully!';
+                        btn.classList.remove('from-brand-600', 'to-brand-500');
+                        btn.classList.add('from-emerald-600', 'to-emerald-500');
+                        setTimeout(() => {
+                            e.target.reset();
+                            btn.textContent = 'Submit Application';
+                            btn.disabled = false;
+                            btn.classList.add('from-brand-600', 'to-brand-500');
+                            btn.classList.remove('from-emerald-600', 'to-emerald-500');
+                        }, 3000);
+                    } else {
+                        btn.textContent = 'Failed - Try Again';
+                        btn.classList.remove('from-brand-600', 'to-brand-500');
+                        btn.classList.add('from-red-600', 'to-red-500');
+                        setTimeout(() => {
+                            btn.textContent = 'Submit Application';
+                            btn.disabled = false;
+                            btn.classList.add('from-brand-600', 'to-brand-500');
+                            btn.classList.remove('from-red-600', 'to-red-500');
+                        }, 3000);
+                    }
                 });
         });
 
