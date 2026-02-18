@@ -1460,9 +1460,23 @@
             btn.textContent = 'Submitting...';
             btn.disabled = true;
 
-            // Generate unique lead ID: CS-YYYYMMDD-HHMMSS
+            // Generate unique Cust ID: <ProductCode>-YYYYMMDD-HHMMSS
+            const servicePrefixes = {
+                'Home Loan': 'HL',
+                'Balance Transfer': 'BT',
+                'Loan Against Property': 'LAP',
+                'Business Loan': 'BL',
+                'Personal Loan': 'PL',
+                'Credit Card': 'CC',
+                'Health Insurance': 'HI',
+                'Life Insurance': 'LI',
+                'Motor Insurance': 'MI',
+                'ULIP': 'UL'
+            };
+            const service = document.getElementById('form-service').value;
+            const prefix = servicePrefixes[service] || 'CS';
             const now = new Date();
-            const leadId = 'CS-' + now.getFullYear()
+            const custId = prefix + '-' + now.getFullYear()
                 + String(now.getMonth() + 1).padStart(2, '0')
                 + String(now.getDate()).padStart(2, '0')
                 + '-' + String(now.getHours()).padStart(2, '0')
@@ -1470,11 +1484,11 @@
                 + String(now.getSeconds()).padStart(2, '0');
 
             const formData = {
-                lead_id: leadId,
+                cust_id: custId,
                 name: document.getElementById('form-name').value,
                 mobile: mobile,
                 email: document.getElementById('form-email').value,
-                service: document.getElementById('form-service').value,
+                service: service,
                 city: document.getElementById('form-city').value,
                 message: document.getElementById('form-message').value || 'No message provided'
             };
