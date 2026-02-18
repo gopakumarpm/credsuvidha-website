@@ -1,0 +1,146 @@
+{
+  "brand": {
+    "name": "CredSuvidha",
+    "tagline": "Trusted Partner. Swift Solutions.",
+    "description": "Smart Financial Solutions for a Better Tomorrow",
+    "domain": "www.credsuvidha.com",
+    "industry": "Financial Services (Fintech)",
+    "copyright": "© 2025 CredSuvidha. All rights reserved."
+  },
+  "contact": {
+    "phone": "+91 93076 73391",
+    "email": "info@credsuvidha.com",
+    "website": "https://www.credsuvidha.com"
+  },
+  "colors": {
+    "brand": {
+      "50": "#eef7ff",
+      "100": "#d9edff",
+      "200": "#bce0ff",
+      "300": "#8ecdff",
+      "400": "#59b0ff",
+      "500": "#338dff",
+      "600": "#1a6ef5",
+      "700": "#1458e1",
+      "800": "#1747b6",
+      "900": "#193f8f",
+      "950": "#142857"
+    },
+    "accent": {
+      "50": "#fff7ed",
+      "100": "#ffedd5",
+      "200": "#fed7aa",
+      "300": "#fdba74",
+      "400": "#fb923c",
+      "500": "#f97316",
+      "600": "#ea580c",
+      "700": "#c2410c"
+    },
+    "emerald": {
+      "50": "#ecfdf5",
+      "400": "#34d399",
+      "500": "#10b981",
+      "600": "#059669"
+    },
+    "logo": {
+      "navy": "#1B3A5C",
+      "gold": "#C5961E",
+      "background": "#FAF6F1"
+    },
+    "primary": "#1a6ef5",
+    "primaryDark": "#142857",
+    "accentPrimary": "#f97316",
+    "success": "#10b981",
+    "background": "#ffffff",
+    "backgroundAlt": "#f8fafc",
+    "textPrimary": "#1e293b",
+    "textSecondary": "#64748b",
+    "textMuted": "#94a3b8",
+    "border": "#e2e8f0"
+  },
+  "gradients": {
+    "primaryCta": "linear-gradient(135deg, #1a6ef5, #338dff)",
+    "hero": "linear-gradient(135deg, #142857 0%, #1a6ef5 50%, #338dff 100%)",
+    "accentCta": "linear-gradient(135deg, #f97316, #fb923c)",
+    "gradientText": "linear-gradient(135deg, #1a6ef5 0%, #338dff 50%, #f97316 100%)",
+    "success": "linear-gradient(135deg, #059669, #10b981)",
+    "logoBadge": "linear-gradient(to bottom right, #1a6ef5, #59b0ff)"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "'Inter', sans-serif",
+      "display": "'Playfair Display', serif"
+    },
+    "fontWeights": {
+      "light": 300,
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800,
+      "black": 900
+    },
+    "fontSizes": {
+      "caption": "10px",
+      "small": "12px",
+      "label": "13px",
+      "body": "14px",
+      "bodyLarge": "16px",
+      "subtitle": "18px",
+      "h4": "20px",
+      "h3": "24px",
+      "h2": "36px",
+      "h1": "48px",
+      "hero": "60px"
+    },
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+  },
+  "spacing": {
+    "borderRadius": {
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "pill": "100px"
+    },
+    "container": "1280px",
+    "sectionPadding": "80px"
+  },
+  "effects": {
+    "glassMorphism": {
+      "background": "rgba(255,255,255,0.08)",
+      "backdropFilter": "blur(20px)",
+      "border": "1px solid rgba(255,255,255,0.15)"
+    },
+    "cardHover": {
+      "transform": "translateY(-8px)",
+      "boxShadow": "0 25px 60px rgba(0,0,0,0.12)",
+      "transition": "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "buttonShadow": {
+      "primary": "0 8px 25px rgba(26,110,245,0.3)",
+      "accent": "0 8px 25px rgba(249,115,22,0.3)"
+    },
+    "pulseGlow": {
+      "color": "rgba(26, 110, 245, 0.3)",
+      "colorIntense": "rgba(26, 110, 245, 0.6)"
+    }
+  },
+  "assets": {
+    "logo": {
+      "primary": "logo.png",
+      "assetsPath": "assets/images/logo.png"
+    },
+    "brandKit": "assets/brandkit/brand-guidelines.html"
+  },
+  "compliance": [
+    "RBI Regulated Partners",
+    "IRDAI Registered",
+    "ISO 27001 Compliant"
+  ],
+  "hosting": {
+    "platform": "Netlify",
+    "domain": "www.credsuvidha.com",
+    "netlifyDomain": "credsuvidha-financial.netlify.app"
+  }
+}

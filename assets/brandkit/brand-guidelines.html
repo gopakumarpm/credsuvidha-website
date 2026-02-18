@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CredSuvidha Brand Kit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            /* Brand Primary - Navy Blue */
+            --brand-navy-dark: #142857;
+            --brand-navy: #193f8f;
+            --brand-blue-deep: #1747b6;
+            --brand-blue: #1458e1;
+            --brand-blue-primary: #1a6ef5;
+            --brand-blue-bright: #338dff;
+            --brand-blue-light: #59b0ff;
+            --brand-blue-lighter: #8ecdff;
+            --brand-blue-pale: #bce0ff;
+            --brand-blue-wash: #d9edff;
+            --brand-blue-tint: #eef7ff;
+
+            /* Brand Secondary - Gold/Amber */
+            --brand-gold-dark: #92400e;
+            --brand-gold: #b45309;
+            --brand-gold-primary: #d97706;
+            --brand-gold-bright: #f59e0b;
+            --brand-gold-light: #fbbf24;
+
+            /* Brand Accent - Orange */
+            --accent-dark: #c2410c;
+            --accent: #ea580c;
+            --accent-primary: #f97316;
+            --accent-light: #fb923c;
+            --accent-lighter: #fdba74;
+            --accent-pale: #fed7aa;
+            --accent-wash: #ffedd5;
+            --accent-tint: #fff7ed;
+
+            /* Success - Emerald */
+            --emerald-dark: #059669;
+            --emerald: #10b981;
+            --emerald-light: #34d399;
+            --emerald-tint: #ecfdf5;
+
+            /* Logo Colors (extracted from logo) */
+            --logo-navy: #1B3A5C;
+            --logo-gold: #C5961E;
+            --logo-bg: #FAF6F1;
+        }
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        .brand-header {
+            background: linear-gradient(135deg, #142857 0%, #1a6ef5 50%, #338dff 100%);
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        .brand-header h1 { font-size: 48px; font-weight: 800; margin-bottom: 8px; letter-spacing: -1px; }
+        .brand-header p { font-size: 18px; opacity: 0.85; font-weight: 300; }
+        .brand-header .version { font-size: 12px; opacity: 0.5; margin-top: 12px; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* Section */
+        .section { padding: 60px 0; border-bottom: 1px solid #e2e8f0; }
+        .section:last-child { border-bottom: none; }
+        .section-title { font-size: 28px; font-weight: 700; color: #142857; margin-bottom: 8px; }
+        .section-subtitle { font-size: 15px; color: #64748b; margin-bottom: 40px; }
+
+        /* Logo Display */
+        .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+        .logo-card {
+            border-radius: 16px;
+            padding: 48px 32px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        .logo-card img { max-height: 100px; width: auto; margin: 0 auto 16px; display: block; }
+        .logo-card .label { font-size: 13px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-top: 16px; }
+        .logo-card.light { background: #ffffff; }
+        .logo-card.dark { background: #142857; }
+        .logo-card.dark .label { color: #94a3b8; }
+        .logo-card.dark img { filter: brightness(0) invert(1); }
+        .logo-card.cream { background: #FAF6F1; }
+
+        /* Color Palette */
+        .color-section { margin-bottom: 40px; }
+        .color-section h3 { font-size: 18px; font-weight: 600; color: #334155; margin-bottom: 16px; }
+        .color-row { display: flex; gap: 12px; flex-wrap: wrap; }
+        .color-swatch {
+            width: 120px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        .color-swatch .preview { height: 80px; }
+        .color-swatch .info { padding: 10px 12px; }
+        .color-swatch .info .name { font-size: 12px; font-weight: 600; color: #334155; }
+        .color-swatch .info .hex { font-size: 11px; color: #94a3b8; font-family: 'Courier New', monospace; }
+
+        /* Typography */
+        .type-specimen { background: white; border-radius: 16px; padding: 40px; border: 1px solid #e2e8f0; margin-bottom: 24px; }
+        .type-specimen h3 { font-size: 14px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .type-row { display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+        .type-row:last-child { border-bottom: none; }
+        .type-weight { font-size: 12px; color: #94a3b8; width: 100px; flex-shrink: 0; }
+        .type-sample { font-size: 24px; color: #1e293b; }
+        .type-sample.display { font-family: 'Playfair Display', serif; }
+
+        /* Spacing & Usage */
+        .usage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .usage-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+        }
+        .usage-card h4 { font-size: 16px; font-weight: 600; color: #142857; margin-bottom: 12px; }
+        .usage-card p { font-size: 14px; color: #64748b; line-height: 1.7; }
+        .usage-card .do { color: #059669; font-weight: 600; }
+        .usage-card .dont { color: #dc2626; font-weight: 600; }
+
+        /* Brand Values */
+        .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+        .value-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+            border-top: 4px solid var(--brand-blue-primary);
+        }
+        .value-card h4 { font-size: 18px; font-weight: 700; color: #142857; margin-bottom: 8px; }
+        .value-card p { font-size: 14px; color: #64748b; }
+
+        /* Button Styles */
+        .btn-showcase { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary { background: linear-gradient(135deg, #1a6ef5, #338dff); color: white; box-shadow: 0 8px 25px rgba(26,110,245,0.3); }
+        .btn-secondary { background: white; color: #1a6ef5; border: 2px solid #1a6ef5; }
+        .btn-accent { background: linear-gradient(135deg, #f97316, #fb923c); color: white; box-shadow: 0 8px 25px rgba(249,115,22,0.3); }
+        .btn-dark { background: #142857; color: white; }
+
+        /* Gradient showcase */
+        .gradient-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .gradient-card {
+            height: 100px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+        }
+        .gradient-card span { font-size: 12px; color: white; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+
+        /* File table */
+        .file-table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; }
+        .file-table th { background: #f8fafc; padding: 14px 20px; text-align: left; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+        .file-table td { padding: 14px 20px; border-top: 1px solid #f1f5f9; font-size: 14px; color: #334155; }
+        .file-table code { background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-size: 12px; color: #6366f1; }
+
+        /* Tagline */
+        .tagline-display {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+        .tagline-display .tagline {
+            font-size: 32px;
+            font-weight: 700;
+            color: #142857;
+            margin-bottom: 8px;
+        }
+        .tagline-display .tagline span { color: #d97706; }
+
+        @media (max-width: 768px) {
+            .brand-header h1 { font-size: 32px; }
+            .color-swatch { width: 100px; }
+            .type-row { flex-direction: column; gap: 4px; }
+            .type-weight { width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="brand-header">
+        <div class="container">
+            <img src="../images/logo.png" alt="CredSuvidha" style="height: 80px; margin: 0 auto 24px; display: block; filter: brightness(0) invert(1);">
+            <h1>CredSuvidha Brand Kit</h1>
+            <p>Visual Identity & Brand Guidelines</p>
+            <div class="version">Version 1.0 &mdash; February 2026</div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- ===== BRAND OVERVIEW ===== -->
+        <section class="section">
+            <h2 class="section-title">Brand Overview</h2>
+            <p class="section-subtitle">CredSuvidha is a modern financial services facilitator providing smart financial solutions across loans, credit cards, and insurance.</p>
+
+            <div class="tagline-display">
+                <div class="tagline">Trusted Partner. <span>Swift Solutions.</span></div>
+                <p style="color: #64748b; font-size: 15px;">Primary brand tagline &mdash; used across all communications</p>
+            </div>
+
+            <div class="value-grid">
+                <div class="value-card">
+                    <h4>Trust</h4>
+                    <p>RBI regulated partners, IRDAI registered, ISO 27001 compliant. Security and compliance are at our core.</p>
+                </div>
+                <div class="value-card" style="border-top-color: #d97706;">
+                    <h4>Speed</h4>
+                    <p>Swift paperless loan approvals. Quick turnaround powered by 50+ banking partners.</p>
+                </div>
+                <div class="value-card" style="border-top-color: #10b981;">
+                    <h4>Expertise</h4>
+                    <p>24/7 expert support. 500+ Cr loans disbursed. 10,000+ happy customers served.</p>
+                </div>
+                <div class="value-card" style="border-top-color: #f97316;">
+                    <h4>Simplicity</h4>
+                    <p>Clean, modern, and accessible. Making financial decisions easy for every Indian.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LOGO ===== -->
+        <section class="section">
+            <h2 class="section-title">Logo</h2>
+            <p class="section-subtitle">The CredSuvidha logo features interlocking C and S letterforms with an upward growth arrow, symbolizing financial progress and partnership.</p>
+
+            <div class="logo-grid">
+                <div class="logo-card light">
+                    <img src="../images/logo.png" alt="CredSuvidha Logo - Light Background">
+                    <div class="label">Primary &mdash; Light Background</div>
+                </div>
+                <div class="logo-card dark">
+                    <img src="../images/logo.png" alt="CredSuvidha Logo - Dark Background">
+                    <div class="label">Inverted &mdash; Dark Background</div>
+                </div>
+                <div class="logo-card cream">
+                    <img src="../images/logo.png" alt="CredSuvidha Logo - Cream Background">
+                    <div class="label">On Brand Cream &mdash; #FAF6F1</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 32px;">
+                <div class="usage-grid">
+                    <div class="usage-card">
+                        <h4>Logo Elements</h4>
+                        <p>
+                            <strong>Symbol:</strong> Interlocking "C" (navy blue) and "S" (gold) with upward arrow<br>
+                            <strong>Wordmark:</strong> "CREDSUVIDHA.COM" in navy blue uppercase<br>
+                            <strong>Tagline:</strong> "TRUSTED PARTNER. SWIFT SOLUTIONS." in gold
+                        </p>
+                    </div>
+                    <div class="usage-card">
+                        <h4>Clear Space & Sizing</h4>
+                        <p>
+                            Maintain minimum clear space equal to the height of the "C" around all sides of the logo.
+                            Minimum display size: 120px wide for digital, 30mm for print.
+                        </p>
+                    </div>
+                    <div class="usage-card">
+                        <h4><span class="do">&#10003; Do</span></h4>
+                        <p>
+                            Use on white, cream, or very light backgrounds<br>
+                            Use the inverted (white) version on dark backgrounds<br>
+                            Maintain proportions when scaling
+                        </p>
+                    </div>
+                    <div class="usage-card">
+                        <h4><span class="dont">&#10007; Don't</span></h4>
+                        <p>
+                            Don't stretch or distort the logo<br>
+                            Don't change the logo colors<br>
+                            Don't place on busy or low-contrast backgrounds<br>
+                            Don't add effects like drop shadows or outlines
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COLOR PALETTE ===== -->
+        <section class="section">
+            <h2 class="section-title">Color Palette</h2>
+            <p class="section-subtitle">Our color system is built around trust (navy blue), warmth (gold/amber), energy (orange), and growth (emerald green).</p>
+
+            <!-- Primary Brand Blue -->
+            <div class="color-section">
+                <h3>Primary &mdash; Brand Blue</h3>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #142857;"></div>
+                        <div class="info"><div class="name">950 - Navy Dark</div><div class="hex">#142857</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #193f8f;"></div>
+                        <div class="info"><div class="name">900 - Navy</div><div class="hex">#193F8F</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #1747b6;"></div>
+                        <div class="info"><div class="name">800 - Deep Blue</div><div class="hex">#1747B6</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #1458e1;"></div>
+                        <div class="info"><div class="name">700 - Blue</div><div class="hex">#1458E1</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #1a6ef5;"></div>
+                        <div class="info"><div class="name">600 - Primary &#9733;</div><div class="hex">#1A6EF5</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #338dff;"></div>
+                        <div class="info"><div class="name">500 - Bright</div><div class="hex">#338DFF</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #59b0ff;"></div>
+                        <div class="info"><div class="name">400 - Light</div><div class="hex">#59B0FF</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #8ecdff;"></div>
+                        <div class="info"><div class="name">300 - Lighter</div><div class="hex">#8ECDFF</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #bce0ff;"></div>
+                        <div class="info"><div class="name">200 - Pale</div><div class="hex">#BCE0FF</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #eef7ff;"></div>
+                        <div class="info"><div class="name">50 - Tint</div><div class="hex">#EEF7FF</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logo Colors -->
+            <div class="color-section">
+                <h3>Logo Colors (Extracted)</h3>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #1B3A5C;"></div>
+                        <div class="info"><div class="name">Logo Navy</div><div class="hex">#1B3A5C</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #C5961E;"></div>
+                        <div class="info"><div class="name">Logo Gold</div><div class="hex">#C5961E</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #FAF6F1;"></div>
+                        <div class="info"><div class="name">Logo Background</div><div class="hex">#FAF6F1</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accent Orange -->
+            <div class="color-section">
+                <h3>Accent &mdash; Orange</h3>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #c2410c;"></div>
+                        <div class="info"><div class="name">700 - Dark</div><div class="hex">#C2410C</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #ea580c;"></div>
+                        <div class="info"><div class="name">600 - Medium</div><div class="hex">#EA580C</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #f97316;"></div>
+                        <div class="info"><div class="name">500 - Primary &#9733;</div><div class="hex">#F97316</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #fb923c;"></div>
+                        <div class="info"><div class="name">400 - Light</div><div class="hex">#FB923C</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #fdba74;"></div>
+                        <div class="info"><div class="name">300 - Lighter</div><div class="hex">#FDBA74</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #fff7ed;"></div>
+                        <div class="info"><div class="name">50 - Tint</div><div class="hex">#FFF7ED</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emerald / Success -->
+            <div class="color-section">
+                <h3>Success &mdash; Emerald Green</h3>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #059669;"></div>
+                        <div class="info"><div class="name">600 - Dark</div><div class="hex">#059669</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #10b981;"></div>
+                        <div class="info"><div class="name">500 - Primary</div><div class="hex">#10B981</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #34d399;"></div>
+                        <div class="info"><div class="name">400 - Light</div><div class="hex">#34D399</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #ecfdf5;"></div>
+                        <div class="info"><div class="name">50 - Tint</div><div class="hex">#ECFDF5</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Neutrals -->
+            <div class="color-section">
+                <h3>Neutrals &mdash; Grays</h3>
+                <div class="color-row">
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #0f172a;"></div>
+                        <div class="info"><div class="name">Slate 900</div><div class="hex">#0F172A</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #334155;"></div>
+                        <div class="info"><div class="name">Slate 700</div><div class="hex">#334155</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #64748b;"></div>
+                        <div class="info"><div class="name">Slate 500</div><div class="hex">#64748B</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #94a3b8;"></div>
+                        <div class="info"><div class="name">Slate 400</div><div class="hex">#94A3B8</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #e2e8f0;"></div>
+                        <div class="info"><div class="name">Slate 200</div><div class="hex">#E2E8F0</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #f8fafc;"></div>
+                        <div class="info"><div class="name">Slate 50</div><div class="hex">#F8FAFC</div></div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="preview" style="background: #ffffff; border: 1px solid #e2e8f0;"></div>
+                        <div class="info"><div class="name">White</div><div class="hex">#FFFFFF</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== GRADIENTS ===== -->
+        <section class="section">
+            <h2 class="section-title">Gradients</h2>
+            <p class="section-subtitle">Signature gradients used across the CredSuvidha brand for buttons, backgrounds, and accent elements.</p>
+
+            <div class="gradient-row">
+                <div class="gradient-card" style="background: linear-gradient(135deg, #1a6ef5, #338dff);">
+                    <span>Primary CTA: brand-600 &rarr; brand-500</span>
+                </div>
+                <div class="gradient-card" style="background: linear-gradient(135deg, #142857, #1a6ef5, #338dff);">
+                    <span>Hero/Header: navy &rarr; brand-600 &rarr; brand-500</span>
+                </div>
+                <div class="gradient-card" style="background: linear-gradient(135deg, #f97316, #fb923c);">
+                    <span>Accent CTA: accent-500 &rarr; accent-400</span>
+                </div>
+            </div>
+            <div class="gradient-row">
+                <div class="gradient-card" style="background: linear-gradient(135deg, #1a6ef5 0%, #338dff 50%, #f97316 100%);">
+                    <span>Gradient Text: brand-600 &rarr; brand-500 &rarr; accent-500</span>
+                </div>
+                <div class="gradient-card" style="background: linear-gradient(135deg, #059669, #10b981);">
+                    <span>Success: emerald-600 &rarr; emerald-500</span>
+                </div>
+                <div class="gradient-card" style="background: linear-gradient(to bottom right, #1a6ef5, #59b0ff);">
+                    <span>Logo Box: brand-600 &rarr; brand-400</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TYPOGRAPHY ===== -->
+        <section class="section">
+            <h2 class="section-title">Typography</h2>
+            <p class="section-subtitle">A dual typeface system combining clean sans-serif for body text with elegant serif for display elements.</p>
+
+            <div class="type-specimen">
+                <h3>Inter &mdash; Primary Typeface (Sans-Serif)</h3>
+                <p style="color: #64748b; font-size: 13px; margin-bottom: 20px;">Used for body text, navigation, buttons, labels, and all UI elements.</p>
+                <div class="type-row">
+                    <div class="type-weight">Light (300)</div>
+                    <div class="type-sample" style="font-weight: 300;">Smart Financial Solutions for a Better Tomorrow</div>
+                </div>
+                <div class="type-row">
+                    <div class="type-weight">Regular (400)</div>
+                    <div class="type-sample" style="font-weight: 400;">Smart Financial Solutions for a Better Tomorrow</div>
+                </div>
+                <div class="type-row">
+                    <div class="type-weight">Medium (500)</div>
+                    <div class="type-sample" style="font-weight: 500;">Smart Financial Solutions for a Better Tomorrow</div>
+                </div>
+                <div class="type-row">
+                    <div class="type-weight">SemiBold (600)</div>
+                    <div class="type-sample" style="font-weight: 600;">Smart Financial Solutions for a Better Tomorrow</div>
+                </div>
+                <div class="type-row">
+                    <div class="type-weight">Bold (700)</div>
+                    <div class="type-sample" style="font-weight: 700;">Smart Financial Solutions for a Better Tomorrow</div>
+                </div>
+                <div class="type-row">
+                    <div class="type-weight">ExtraBold (800)</div>
+                    <div class="type-sample" style="font-weight: 800;">Smart Financial Solutions for a Better Tomorrow</div>
+                </div>
+                <div class="type-row">
+                    <div class="type-weight">Black (900)</div>
+                    <div class="type-sample" style="font-weight: 900;">Smart Financial Solutions for a Better Tomorrow</div>
+                </div>
+            </div>
+
+            <div class="type-specimen">
+                <h3>Playfair Display &mdash; Display Typeface (Serif)</h3>
+                <p style="color: #64748b; font-size: 13px; margin-bottom: 20px;">Used sparingly for hero headlines and special emphasis. Conveys elegance and authority.</p>
+                <div class="type-row">
+                    <div class="type-weight">Bold (700)</div>
+                    <div class="type-sample display" style="font-weight: 700;">Trusted Partner. Swift Solutions.</div>
+                </div>
+                <div class="type-row">
+                    <div class="type-weight">ExtraBold (800)</div>
+                    <div class="type-sample display" style="font-weight: 800;">Trusted Partner. Swift Solutions.</div>
+                </div>
+            </div>
+
+            <div class="usage-grid" style="margin-top: 24px;">
+                <div class="usage-card">
+                    <h4>Type Scale</h4>
+                    <p>
+                        <strong>Hero H1:</strong> 48-60px / ExtraBold (Inter)<br>
+                        <strong>Section H2:</strong> 36-40px / Bold<br>
+                        <strong>Card H3:</strong> 20-24px / SemiBold<br>
+                        <strong>Body:</strong> 14-16px / Regular<br>
+                        <strong>Small/Label:</strong> 12-13px / Medium<br>
+                        <strong>Caption:</strong> 10-11px / Medium uppercase
+                    </p>
+                </div>
+                <div class="usage-card">
+                    <h4>Font Loading</h4>
+                    <p>
+                        <code>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"&gt;</code>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BUTTONS & COMPONENTS ===== -->
+        <section class="section">
+            <h2 class="section-title">Buttons & UI Components</h2>
+            <p class="section-subtitle">Consistent button styles used across the CredSuvidha website and communications.</p>
+
+            <div style="background: white; border-radius: 16px; padding: 40px; border: 1px solid #e2e8f0; margin-bottom: 24px;">
+                <h3 style="font-size: 14px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">Button Variants</h3>
+                <div class="btn-showcase">
+                    <button class="btn btn-primary">Get Started &rarr;</button>
+                    <button class="btn btn-secondary">Explore Services</button>
+                    <button class="btn btn-accent">Apply Now</button>
+                    <button class="btn btn-dark">Learn More</button>
+                </div>
+                <p style="margin-top: 16px; font-size: 13px; color: #94a3b8;">
+                    Border-radius: 100px (pill shape) &bull; Padding: 12px 28px &bull; Font: Inter SemiBold 14px &bull; Transition: 300ms
+                </p>
+            </div>
+
+            <div class="usage-grid">
+                <div class="usage-card">
+                    <h4>Glass Morphism</h4>
+                    <div style="background: linear-gradient(135deg, #1a6ef5, #338dff); border-radius: 12px; padding: 24px; margin-top: 12px;">
+                        <div style="background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 20px; color: white; font-size: 14px;">
+                            Glass card effect used on hero stats and overlaid content
+                        </div>
+                    </div>
+                </div>
+                <div class="usage-card">
+                    <h4>Card Hover</h4>
+                    <p>Cards elevate on hover with <code>translateY(-8px)</code> and <code>box-shadow: 0 25px 60px rgba(0,0,0,0.12)</code>. Transition uses cubic-bezier(0.4, 0, 0.2, 1) for smooth feel.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BRAND ASSETS ===== -->
+        <section class="section">
+            <h2 class="section-title">Brand Assets & File Structure</h2>
+            <p class="section-subtitle">All brand assets are organized in the project repository for easy access.</p>
+
+            <table class="file-table">
+                <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>Location</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Primary Logo</td>
+                        <td><code>logo.png</code></td>
+                        <td>Full logo with symbol + wordmark + tagline (root for web reference)</td>
+                    </tr>
+                    <tr>
+                        <td>Logo (Assets)</td>
+                        <td><code>assets/images/logo.png</code></td>
+                        <td>Same logo stored in organized assets folder</td>
+                    </tr>
+                    <tr>
+                        <td>Brand Kit</td>
+                        <td><code>assets/brandkit/brand-guidelines.html</code></td>
+                        <td>This visual brand guidelines document</td>
+                    </tr>
+                    <tr>
+                        <td>Brand Tokens</td>
+                        <td><code>assets/brandkit/brand-tokens.json</code></td>
+                        <td>Machine-readable design tokens (colors, fonts, spacing)</td>
+                    </tr>
+                    <tr>
+                        <td>Website</td>
+                        <td><code>index.html</code></td>
+                        <td>Main website (single-page application)</td>
+                    </tr>
+                    <tr>
+                        <td>Netlify Config</td>
+                        <td><code>netlify.toml</code></td>
+                        <td>Deployment configuration with headers and redirects</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ===== CONTACT & BRAND INFO ===== -->
+        <section class="section">
+            <h2 class="section-title">Brand Information</h2>
+            <p class="section-subtitle">Key brand details and contact information.</p>
+
+            <div class="usage-grid">
+                <div class="usage-card">
+                    <h4>Company Details</h4>
+                    <p>
+                        <strong>Name:</strong> CredSuvidha<br>
+                        <strong>Tagline:</strong> Trusted Partner. Swift Solutions.<br>
+                        <strong>Description:</strong> Smart Financial Solutions for a Better Tomorrow<br>
+                        <strong>Domain:</strong> www.credsuvidha.com<br>
+                        <strong>Industry:</strong> Financial Services (Fintech)
+                    </p>
+                </div>
+                <div class="usage-card">
+                    <h4>Contact</h4>
+                    <p>
+                        <strong>Phone:</strong> +91 93076 73391<br>
+                        <strong>Email:</strong> info@credsuvidha.com<br>
+                        <strong>Website:</strong> https://www.credsuvidha.com
+                    </p>
+                </div>
+                <div class="usage-card">
+                    <h4>Compliance Badges</h4>
+                    <p>
+                        RBI Regulated Partners<br>
+                        IRDAI Registered<br>
+                        ISO 27001 Compliant
+                    </p>
+                </div>
+                <div class="usage-card">
+                    <h4>Social Presence</h4>
+                    <p>
+                        Facebook &bull; Twitter/X &bull; LinkedIn &bull; Instagram<br>
+                        <em style="color: #94a3b8;">Social URLs to be configured</em>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TECH STACK ===== -->
+        <section class="section">
+            <h2 class="section-title">Technical Specifications</h2>
+            <p class="section-subtitle">Technology stack and external dependencies for the website.</p>
+
+            <div class="usage-grid">
+                <div class="usage-card">
+                    <h4>CSS Framework</h4>
+                    <p>Tailwind CSS via CDN (<code>cdn.tailwindcss.com</code>) with custom theme configuration for brand colors, fonts, and extended utilities.</p>
+                </div>
+                <div class="usage-card">
+                    <h4>Fonts</h4>
+                    <p>Google Fonts CDN: Inter (300-900) and Playfair Display (700-800). Preconnected for performance.</p>
+                </div>
+                <div class="usage-card">
+                    <h4>JavaScript</h4>
+                    <p>Vanilla JavaScript. No external libraries. Features: scroll reveal (Intersection Observer), counter animation, mobile menu, smooth scroll.</p>
+                </div>
+                <div class="usage-card">
+                    <h4>Hosting</h4>
+                    <p>Netlify (static hosting). Custom domain: www.credsuvidha.com. Single HTML file deployment. No build step required.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #142857; color: white; padding: 40px 0; text-align: center; margin-top: 60px;">
+        <div class="container">
+            <p style="font-size: 14px; opacity: 0.7;">&copy; 2025 CredSuvidha. All rights reserved. Brand Kit v1.0</p>
+        </div>
+    </footer>
+
+</body>
+</html>
